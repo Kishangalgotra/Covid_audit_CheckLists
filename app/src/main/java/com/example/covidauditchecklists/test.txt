@@ -1,0 +1,188 @@
+
+
+final AlertDialog dialog = new AlertDialog.Builder(context)
+        .setView(v)
+        .setTitle(R.string.my_title)
+        .setPositiveButton(android.R.string.ok, null) //Set to null. We override the onclick
+        .setNegativeButton(android.R.string.cancel, null)
+        .create();
+
+dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+
+    @Override
+    public void onShow(DialogInterface dialogInterface) {
+
+        Button button = ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE);
+        button.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                // TODO Do something
+
+                //Dismiss once everything is OK.
+                dialog.dismiss();
+            }
+        });
+    }
+});
+dialog.show();
+
+new AlertDialog.Builder(this,R.style.Theme_AppCompat_DayNight_Dialog_Alert).setView(edittext).setIcon(android.R.drawable.ic_menu_add)
+                    .setTitle("Authenticate First").setMessage("Kindly Enter Passcode")
+                    .setPositiveButton("Sign In", (dialog, which) -> {
+                        myRef.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                String value = dataSnapshot.getValue(Long.class).toString();
+                                Log.d("TAG", "Value is: " + value);
+                                if(value.equals(edittext.getText().toString())){
+                                    progressBar.setVisibility(View.INVISIBLE);
+
+                                }else{
+                                    progressBar.setVisibility(View.INVISIBLE);
+                                    //admin_wrong_credentials.setVisibility(View.VISIBLE);
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError error) {
+                                // Failed to read value
+                                Log.w("TAG", "Failed to read value.", error.toException());
+                            }
+                        });
+                    }).show().setCanceledOnTouchOutside(false);
+ <ImageView
+         android:id="@+id/imageView"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:background="@color/white"
+         android:scaleType="centerCrop"
+         android:adjustViewBounds="true"
+         app:layout_constraintBottom_toBottomOf="parent"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toTopOf="parent"
+         app:srcCompat="@drawable/green" />
+
+
+ <CheckBox
+            android:id="@+id/user_checklist_checkBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="start"
+            android:text=""
+            android:tag="checkboxbutton"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ ========================================
+ @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        //assert currentUser != null;
+       // Log.e("USERNAME",currentUser.getDisplayName().toString());
+        if(currentUser!=null){
+            startActivity(new Intent(getApplicationContext(),user.class));
+        }
+    }
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    tools:context=".admin">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="398dp"
+        android:background="@drawable/pink_admin_panel_back"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_image"
+            android:layout_width="83dp"
+            android:layout_height="87dp"
+            android:layout_gravity="top"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:src="@drawable/ic_baseline_insert_emoticon_24"
+            app:civ_border_color="#FF000000"
+            app:civ_border_width="2dp" />
+
+        <TextView
+            android:id="@+id/admin_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+
+            android:paddingStart="30dp"
+            android:text="@string/name"
+            android:textColor="@color/white"
+            android:textSize="30sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="397dp"
+        android:layout_height="395dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="364dp"
+            android:layout_height="72dp"
+            android:layout_margin="15dp"
+            android:background="@drawable/common_google_signin_btn_text_light_normal_background"
+            android:padding="10dp"
+            android:text="Button"
+            android:textAlignment="textEnd"
+            android:textSize="24sp" />
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="364dp"
+            android:layout_height="72dp"
+            android:layout_margin="15dp"
+            android:background="@drawable/common_google_signin_btn_text_light_normal_background"
+            android:padding="10dp"
+            android:text="Button"
+            android:textAlignment="textEnd"
+            android:textSize="24sp" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

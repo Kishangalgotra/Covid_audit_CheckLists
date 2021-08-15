@@ -1,0 +1,75 @@
+<resources>
+    <string name="app_name">COVID AUDIT APP</string>
+    <string name="submit">SUBMIT</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="multiplelines">Line1 \n Line2</string>
+    <string name="sign_in">Sign In</string>
+    <string name="email">Email</string>
+    <string name="sign_up">SIGN UP</string>
+    <string name="name">NAME</string>
+    <string name="full_name">Full Name</string>
+
+    <string name="re_enter_password">Re-Enter Password</string>
+
+    <string name="modify_checklist">Modify CheckList</string>
+    <string name="see_users_performance">Registered Users</string>
+    <string name="modify">Modify</string>
+    <string name="checklist">CheckList</string>
+    <string name="enter_passcode">Enter PassCode</string>
+    <string name="kindly_enter_passcode">Kindly Enter Passcode</string>
+
+    <string name="please_click_below_image_first">Please Click below Image First</string>
+    <string name="add">ADD</string>
+    <string name="user_profile_pic">User Profile Pic</string>
+    <string name="user_name">User Name</string>
+    <string name="tick_the_accesories_you_have_today">Audit the Client</string>
+    <string name="password">Password</string>
+
+
+    <string name="add_item">Add Item</string>
+    <string name="enter_user_name">Enter User Name</string>
+    <string name="todo">TODO</string>
+    <string name="user_image">user Image</string>
+    <string name="login_as_admin">Login as Admin</string>
+    <string name="search_user">Search user</string>
+    <string name="auditor_panel">Auditor Panel</string>
+    <string name="no_internet">No Internet</string>
+    <string name="wrong_credentials">Wrong Credentials</string>
+    <string name="admin_panel">Admin Panel</string>
+    <string name="user_panel">Client Panel</string>
+
+    <string name="category_type">Select Your Category</string>
+    <string name="request_auditing">Request Auditing</string>
+    <string name="audit_request_submitted_to_admin_wait_for_user_approval">Audit Request Submitted to Admin Wait For User Approval</string>
+    <string name="client_requests">Client Requests</string>
+    <string name="auditor">Auditor</string>
+    <string name="client">Client</string>
+    <string name="pending_rejected_list">Pending Auditor List</string>
+    <string name="approved_clients_list">Approved Clients List</string>
+    <string name="audit_client">AUDIT CLIENT</string>
+    <string name="reject">Reject</string>
+    <string name="approve">Approve</string>
+    <string name="approve_pending_audits">Approve pending Audits</string>
+    <string name="title_activity_selected_list_daa">activity_selected_list_daa</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="three_line">|||</string>
+    <string name="delete">Delete</string>
+    <string name="select_as_main">Select As Main</string>
+    <string name="save">SAVE</string>
+    <string name="empty">Empty</string>
+    <string name="assign_auditor">Assign Auditor</string>
+    <string name="assign">Assign</string>
+    <string name="rejected_auditor_list">Rejected Auditor List</string>
+    <string name="title_activity_admin__approved__audits">Admin_Approved_Audits</string>
+    <string name="approved_audits">Approved Audits</string>
+    <string name="audited_report">Audited report</string>
+    <string name="client_name">CLIENT NAME</string>
+    <string name="auditor_name">Auditor Name</string>
+</resources>

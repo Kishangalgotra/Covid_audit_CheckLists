@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_theme1"
+    tools:context=".three_choice_panel">
+
+    <TextView
+        android:id="@+id/admin_panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="290dp"
+        android:background="@drawable/three_choice_beckground"
+        android:clickable="true"
+        android:focusable="true"
+        android:fontFamily="@font/nunito_sans_light"
+        android:gravity="center"
+        android:padding="15dp"
+        android:text="@string/admin_panel"
+        android:textColor="#FFF"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/auditor_Panel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/auditor_Panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/three_choice_beckground"
+        android:clickable="true"
+        android:focusable="true"
+        android:fontFamily="@font/nunito_sans_light"
+        android:gravity="center"
+
+        android:padding="15dp"
+        android:text="@string/auditor_panel"
+        android:textColor="#FFF"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/User_Panel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/admin_panel" />
+
+    <TextView
+        android:id="@+id/User_Panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="412dp"
+        android:background="@drawable/three_choice_beckground"
+        android:clickable="true"
+        android:focusable="true"
+        android:textStyle="bold"
+        android:fontFamily="@font/nunito_sans_light"
+        android:gravity="center"
+        android:padding="15dp"
+        android:text="@string/user_panel"
+        android:textColor="#FFF"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/auditor_Panel" />
+</androidx.constraintlayout.widget.ConstraintLayout>

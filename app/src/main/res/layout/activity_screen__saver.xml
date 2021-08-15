@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="@drawable/border"
+    tools:context=".Screen_Saver">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        android:background="@color/white"
+        android:adjustViewBounds="true"
+        android:layout_marginTop="310dp"
+        android:layout_marginLeft="20dp"
+        app:srcCompat="@drawable/splash_screen_logo"
+        android:contentDescription="TODO" />
+
+    <ProgressBar
+        android:id="@+id/screen_saver_progressBar2"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="36dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="369dp"
+        android:layout_marginLeft="180dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.513" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="160dp"
+        android:text="Get Ready to Fight With Corona Together With"
+        android:gravity="center"
+        android:textColor="#0033FF"
+        android:textSize="25sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="220dp"
+        android:text="Q4SDG"
+        android:gravity="center"
+        android:textColor="#FF0000"
+        android:textSize="40sp"/>
+</RelativeLayout>

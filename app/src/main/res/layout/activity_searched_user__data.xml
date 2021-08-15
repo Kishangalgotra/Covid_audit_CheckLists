@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/custom_input"
+    tools:context=".Searched_user_Data">
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="10"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:contentDescription="@string/user_image"
+            app:srcCompat="@drawable/ic_baseline_user" />
+
+        <TextView
+            android:id="@+id/searched_user_name2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:fontFamily="@font/nunito_sans_light"
+            android:text="TextView"
+            android:textAlignment="center"
+            android:textSize="35sp" />
+
+        <ImageView
+            android:id="@+id/Searched_user_stars2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/zero_star" />
+
+        <ListView
+            android:id="@+id/Searched_user_listview2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="5" />
+
+        <TextView
+            android:id="@+id/requestaudit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/three_choice_beckground"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="@font/nunito_sans_light"
+            android:gravity="center"
+            android:padding="15dp"
+            android:text="@string/request_auditing"
+            android:textColor="#FF0000"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

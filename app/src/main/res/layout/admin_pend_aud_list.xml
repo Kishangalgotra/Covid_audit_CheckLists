@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:padding="10dp"
+    android:id="@+id/admin_pend_aud_list_linear"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:text="AUDITOR   :: "
+            android:textSize="17sp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:padding="4dp"
+            android:text="CLIENT       :: "
+            android:textSize="17sp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="181dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/admin_pend_aud_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/three_choice_beckground"
+            android:fontFamily="@font/nunito_sans_light"
+            android:padding="4dp"
+            android:text="@string/auditor_name"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/admin_pend_client_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/three_choice_beckground"
+            android:fontFamily="@font/nunito_sans_light"
+            android:padding="4dp"
+            android:text="@string/client_name"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/admin_pen_aud_selected_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/custom_click_user"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:padding="4dp"
+        android:text="@string/audited_report"
+        android:textSize="13sp"
+        android:textStyle="bold" />
+
+</LinearLayout>

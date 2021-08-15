@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "988946252138",
+    "project_id": "covid-audit-checklists",
+    "storage_bucket": "covid-audit-checklists.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:988946252138:android:68982bdee7a4dcf93c6513",
+        "android_client_info": {
+          "package_name": "com.example.covidauditchecklists"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "988946252138-mab5ukpcj9aug5erfq9s152q6e3i6mc4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIuIC34wfLpwjsuV9mn3w3SPhZpxdoHJ8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "988946252138-mab5ukpcj9aug5erfq9s152q6e3i6mc4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
