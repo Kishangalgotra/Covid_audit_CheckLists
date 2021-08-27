@@ -1,4 +1,4 @@
-package com.example.covidauditchecklists
+package KotlinFiles
 
 import android.content.Intent
 import android.content.pm.ActivityInfo
@@ -14,6 +14,7 @@ import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.ProgressBar
 import androidx.appcompat.app.ActionBar
+import com.example.covidauditchecklists.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference

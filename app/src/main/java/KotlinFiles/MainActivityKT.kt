@@ -1,4 +1,4 @@
-package com.example.covidauditchecklists
+package KotlinFiles
 
 import COMMON.COMMON_DATA
 import Controller_Classes.auditor_client_list
@@ -17,11 +17,11 @@ import android.util.Patterns
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AlertDialog
+import com.example.covidauditchecklists.*
+import com.example.covidauditchecklists.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
@@ -122,7 +122,7 @@ class MainActivityKT : AppCompatActivity() {
         //ADMIN SIGN IN CLICK
         ADMIN_SIGNING.setOnClickListener {
             // ADMIN_SIGNING.startAnimation(myAnim)
-            startActivity(Intent(applicationContext, Sign_in_Admin::class.java))
+            startActivity(Intent(applicationContext, Sign_in_AdminKT::class.java))
             finish()
         }
         if (TO_USER_PROFILE == 5) {

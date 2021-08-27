@@ -1,4 +1,4 @@
-package com.example.covidauditchecklists
+package KotlinFiles
 
 import android.content.Intent
 import android.graphics.Color
@@ -14,6 +14,9 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
+import com.example.covidauditchecklists.MainActivity
+import com.example.covidauditchecklists.R
+import com.example.covidauditchecklists.admin
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
