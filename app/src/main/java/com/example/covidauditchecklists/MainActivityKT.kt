@@ -26,16 +26,16 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
 class MainActivityKT : AppCompatActivity() {
-    var MAUTH : FirebaseAuth  =FirebaseAuth.getInstance()
-    lateinit var EMAIL_SIGNING : EditText
-    lateinit var PASSWORD_SIGNING : EditText
-    lateinit var SIGN_IN :Button
-    lateinit var SIGN_UP : Button
+    private var MAUTH : FirebaseAuth  =FirebaseAuth.getInstance()
+    private lateinit var EMAIL_SIGNING : EditText
+    private lateinit var PASSWORD_SIGNING : EditText
+    private lateinit var SIGN_IN :Button
+    private lateinit var SIGN_UP : Button
     lateinit var PROGRESSBAR :ProgressBar
-    lateinit var ADMIN_SIGNING : TextView
-    lateinit var USER_SEARCH_PAGE : TextView
+    private lateinit var ADMIN_SIGNING : TextView
+    private lateinit var USER_SEARCH_PAGE : TextView
     lateinit var AUDITOR_PANEL : TextView
-    lateinit var WRONG_CREDENTIALS : TextView
+    private lateinit var WRONG_CREDENTIALS : TextView
     lateinit var NO_INTERNET :TextView
     var  myRef2 : DatabaseReference = FirebaseDatabase.getInstance().getReference("CheckList")
     var admin :Int = 0 
@@ -44,12 +44,12 @@ class MainActivityKT : AppCompatActivity() {
     private lateinit var mDatabase : DatabaseReference
     var DATA_FOR_UER_CHECKLIST :Array<String> = emptyArray()
     var run :Boolean= true 
-    var POOR_NETWORK :Int= 0 
-    var TO_USER_PROFILE :Int = 2 
+    private var POOR_NETWORK :Int= 0
+    private var TO_USER_PROFILE :Int = 2
     var h :Int = 0 
     //GLOBAL DECLARATION
-    var myRef_admin_auditor :DatabaseReference= DATABASE.getReference("AUDITOR_FOR_SIGN_IN") 
-    var myRef_admin_users :DatabaseReference = DATABASE.getReference("CLIENT_FOR_SIGN_IN") 
+    private var myRef_admin_auditor :DatabaseReference= DATABASE.getReference("AUDITOR_FOR_SIGN_IN")
+    private var myRef_admin_users :DatabaseReference = DATABASE.getReference("CLIENT_FOR_SIGN_IN")
     var authorized_in_firebase :Int = 2 
     lateinit var checklistListener : ValueEventListener
     //var  myAnim: Animation = AnimationUtils.loadAnimation(applicationContext, R.anim.anim)
@@ -60,7 +60,7 @@ class MainActivityKT : AppCompatActivity() {
             var window :Window= this.getWindow()
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-            window.setStatusBarColor(this.getResources().getColor(R.color.black))
+            window.statusBarColor = this.resources.getColor(R.color.black)
         }
         var actionBar: ActionBar
         actionBar = getSupportActionBar()!!
@@ -70,9 +70,9 @@ class MainActivityKT : AppCompatActivity() {
         TO_USER_PROFILE =2
         SIGN_IN = findViewById(R.id.sign_in_button)
         NO_INTERNET = findViewById(R.id.no_inernet)
-        NO_INTERNET.setVisibility(View.INVISIBLE)
+        NO_INTERNET.visibility = View.INVISIBLE
         WRONG_CREDENTIALS = findViewById(R.id.wrong_credential)
-        WRONG_CREDENTIALS.setVisibility(View.INVISIBLE)
+        WRONG_CREDENTIALS.visibility = View.INVISIBLE
         ADMIN_SIGNING = findViewById(R.id.admin_login)
         SIGN_UP = findViewById(R.id.sign_up_at_sign_in_screen)
         PROGRESSBAR = findViewById(R.id.progressBar)
@@ -91,19 +91,19 @@ class MainActivityKT : AppCompatActivity() {
         // Drop down layout style - list view with radio button
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         // attaching data adapter to spinner
-        spinner.setAdapter(dataAdapter)
-        spinner.setOnItemSelectedListener( CustomOnItemSelectedListener())
+        spinner.adapter = dataAdapter
+        spinner.onItemSelectedListener = CustomOnItemSelectedListener()
         //temporary dropdown checking
         USER_SEARCH_PAGE = findViewById(R.id.user_search_page)
         USER_SEARCH_PAGE.visibility = View.GONE
         //used for auditor common password 6789
         USER_SEARCH_PAGE.setOnClickListener {
             // USER_SEARCH_PAGE.startAnimation(myAnim)
-            startActivity(Intent(getApplicationContext(), Admin_user_checklist_details::class.java))
+            startActivity(Intent(applicationContext, Admin_user_checklist_details::class.java))
         }
         USER_SEARCH_PAGE.setOnClickListener {
             //  USER_SEARCH_PAGE.startAnimation(myAnim)
-            startActivity(Intent(getApplicationContext(), Admin_user_checklist_details::class.java))
+            startActivity(Intent(applicationContext, Admin_user_checklist_details::class.java))
             //finish()
         }
         //SIGN IN CLICK
@@ -116,39 +116,36 @@ class MainActivityKT : AppCompatActivity() {
         //SIGN UP CLICK
         SIGN_UP.setOnClickListener {
             // SIGN_UP.startAnimation(myAnim)
-            startActivity(Intent(getApplicationContext(), Sign_up::class.java))
+            startActivity(Intent(applicationContext, Sign_up::class.java))
             // finish()
         }
         //ADMIN SIGN IN CLICK
         ADMIN_SIGNING.setOnClickListener {
             // ADMIN_SIGNING.startAnimation(myAnim)
-            startActivity(Intent(getApplicationContext(), Sign_in_Admin::class.java))
+            startActivity(Intent(applicationContext, Sign_in_Admin::class.java))
             finish()
         }
         if (TO_USER_PROFILE == 5) {
             var myRef: DatabaseReference = DATABASE.getReference("AuditorPass") 
-            var edittext = EditText(getApplicationContext())
+            var edittext = EditText(applicationContext)
             val builder = AlertDialog.Builder(this)
             builder.setView(edittext)
             builder.setTitle("Authenticate First").setMessage("Kindly Enter Passcode")
-
             builder.setPositiveButton(android.R.string.yes) { dialog, which ->
-                PROGRESSBAR.setVisibility(View.VISIBLE)
+                PROGRESSBAR.visibility = View.VISIBLE
                 myRef.addValueEventListener(object : ValueEventListener {
                     override fun onDataChange(dataSnapshot: DataSnapshot) {
-                        var value: String = dataSnapshot.getValue().toString()
-
-                        Log.d("TAG", "Value is: " + value)
-                        if (value.equals(edittext.getText().toString())) {
-                            PROGRESSBAR.setVisibility(View.INVISIBLE)
+                        var value: String = dataSnapshot.value.toString()
+                        Log.d("TAG", "Value is: $value")
+                        if (value.equals(edittext.text.toString())) {
+                            PROGRESSBAR.visibility = View.INVISIBLE
                             h = 2
                         } else {
-                            startActivity(Intent(getApplicationContext(), MainActivity::class.java))
+                            startActivity(Intent(applicationContext, MainActivity::class.java))
                             finish()
-                            PROGRESSBAR.setVisibility(View.INVISIBLE)
+                            PROGRESSBAR.visibility = View.INVISIBLE
                         }
                     }
-
                     override fun onCancelled(error: DatabaseError) {
                         TODO("Not yet implemented")
                     }
@@ -180,7 +177,7 @@ class MainActivityKT : AppCompatActivity() {
             val email:String = EMAIL_SIGNING.getText().toString().trim()
             val password:String = PASSWORD_SIGNING.getText().toString().trim()
             if (email.isEmpty()) {
-                EMAIL_SIGNING.setError("Please Fill Email")
+                EMAIL_SIGNING.error = "Please Fill Email"
                 EMAIL_SIGNING.requestFocus()
                 return 
             }
@@ -195,9 +192,9 @@ class MainActivityKT : AppCompatActivity() {
                 PASSWORD_SIGNING.requestFocus()
                 return 
             }
-            EMAIL_SIGNING.setEnabled(false)
-            PASSWORD_SIGNING.setEnabled(false)
-            PROGRESSBAR.setVisibility(View.VISIBLE)
+            EMAIL_SIGNING.isEnabled = false
+            PASSWORD_SIGNING.isEnabled = false
+            PROGRESSBAR.visibility = View.VISIBLE
             Toast.makeText(applicationContext, "Starting Authentication.", Toast.LENGTH_SHORT).show() 
             //Getting Data For User CheckList
              checklistListener = object: ValueEventListener {
@@ -206,8 +203,8 @@ class MainActivityKT : AppCompatActivity() {
                     if (dataSnapshot.exists()) {
                         DATA_FOR_UER_CHECKLIST = dataSnapshot.getValue(String::class.java) as Array<String>
                     } else {
-                        NO_INTERNET.setText("Poor Connection")
-                        NO_INTERNET.setVisibility(View.VISIBLE)
+                        NO_INTERNET.text = "Poor Connection"
+                        NO_INTERNET.visibility = View.VISIBLE
                     }
                 }
                 @Override
@@ -218,48 +215,48 @@ class MainActivityKT : AppCompatActivity() {
             myRef2.addValueEventListener(checklistListener)
            //AUTHENTICATING GIVEN CREDENTIALS
             MAUTH.signInWithEmailAndPassword(email, password).addOnCompleteListener{task ->
-                if (task.isSuccessful()) {
-                    PROGRESSBAR.setVisibility(View.INVISIBLE)
+                if (task.isSuccessful) {
+                    PROGRESSBAR.visibility = View.INVISIBLE
                     if (TO_USER_PROFILE == 1) {
-                        WRONG_CREDENTIALS.setText("Verifying Credentials")
-                        WRONG_CREDENTIALS.setVisibility(View.VISIBLE)
+                        WRONG_CREDENTIALS.text = "Verifying Credentials"
+                        WRONG_CREDENTIALS.visibility = View.VISIBLE
                         CHECK_IF_CLIENT(email)
                     } else {
-                        WRONG_CREDENTIALS.setText("Verifying Credentials")
-                        WRONG_CREDENTIALS.setVisibility(View.VISIBLE)
+                        WRONG_CREDENTIALS.text = "Verifying Credentials"
+                        WRONG_CREDENTIALS.visibility = View.VISIBLE
                         CHECK_IF_AUDITOR(email)
                     }
                 } else {
                     PROGRESSBAR.setVisibility(View.INVISIBLE)
                     Toast.makeText(applicationContext, "Task Is Failed.", Toast.LENGTH_SHORT).show()
-                    WRONG_CREDENTIALS.setVisibility(View.VISIBLE)
+                    WRONG_CREDENTIALS.visibility = View.VISIBLE
                 }
                 if (task.isCanceled()) {
-                    PROGRESSBAR.setVisibility(View.INVISIBLE)
+                    PROGRESSBAR.visibility = View.INVISIBLE
                     Toast.makeText(applicationContext, "Task Is Cancelled.", Toast.LENGTH_SHORT).show()
                 }
             }
         } else {
-            NO_INTERNET.setText("No Internet")
-            NO_INTERNET.setVisibility(View.VISIBLE)
-            PROGRESSBAR.setVisibility(View.INVISIBLE)
+            NO_INTERNET.text = "No Internet"
+            NO_INTERNET.visibility = View.VISIBLE
+            PROGRESSBAR.visibility = View.INVISIBLE
         }
         //ENABLING DISABLED COMPONENTS
-        EMAIL_SIGNING.setEnabled(true)
-        PASSWORD_SIGNING.setEnabled(true)
-        SIGN_IN.setEnabled(true)
+        EMAIL_SIGNING.isEnabled = true
+        PASSWORD_SIGNING.isEnabled = true
+        SIGN_IN.isEnabled = true
     }
 
     private fun CHECK_IF_AUDITOR( emailss:String){
         var intent:Intent =  Intent(this, auditor_client_list::class.java)
-        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+        intent.flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
         intent.putExtra("string-array", DATA_FOR_UER_CHECKLIST)
         CredCheck()
         myRef_admin_auditor.addListenerForSingleValueEvent(object :ValueEventListener {
             @Override
             override fun onDataChange( dataSnapshot :DataSnapshot) {
                 for ( ds:DataSnapshot in dataSnapshot.getChildren()){
-                    var email:String = ds.getValue().toString()
+                    var email:String = ds.value.toString()
                     if(emailss.equals(email)){
                         startActivity(intent)
                         finish()
@@ -282,7 +279,7 @@ class MainActivityKT : AppCompatActivity() {
             @Override
              override fun onDataChange(dataSnapshot:DataSnapshot) {
                 for ( ds :DataSnapshot in  dataSnapshot.getChildren()) {
-                    var email = ds.getValue().toString()
+                    var email = ds.value.toString()
                     if (email.equals(emails)) {
                         startActivity(intent1)
                         finish()
@@ -299,12 +296,12 @@ class MainActivityKT : AppCompatActivity() {
     }
 
      fun CredCheck(){
-        WRONG_CREDENTIALS.setText("Verifying Credentials") 
-        WRONG_CREDENTIALS.setVisibility(View.VISIBLE) 
+         WRONG_CREDENTIALS.text = "Verifying Credentials"
+         WRONG_CREDENTIALS.visibility = View.VISIBLE
         var handler = Handler() 
         handler.postDelayed({
-        WRONG_CREDENTIALS.setText("Wrong Credentials") 
-        WRONG_CREDENTIALS.setVisibility(View.VISIBLE) 
+        WRONG_CREDENTIALS.text = "Wrong Credentials"
+            WRONG_CREDENTIALS.visibility = View.VISIBLE
         },3000)
     }
 
