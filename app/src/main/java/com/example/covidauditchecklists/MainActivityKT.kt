@@ -53,7 +53,7 @@ class MainActivityKT : AppCompatActivity() {
     var myRef_admin_users :DatabaseReference = DATABASE.getReference("CLIENT_FOR_SIGN_IN");
     var authorized_in_firebase :Int = 2;
     lateinit var checklistListener : ValueEventListener
-    var  myAnim : Animation = AnimationUtils.loadAnimation(this, R.anim.anim);
+    var  myAnim  = AnimationUtils.loadAnimation(this, R.anim.anim);
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

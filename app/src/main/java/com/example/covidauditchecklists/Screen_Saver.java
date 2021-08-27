@@ -54,7 +54,7 @@ public class Screen_Saver extends AppCompatActivity {
             }
             @Override
             public void onFinish() {
-                   startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                   startActivity(new Intent(getApplicationContext(), MainActivityKT.class));
                    finish();
             }
         }.start();
