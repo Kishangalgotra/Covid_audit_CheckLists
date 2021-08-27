@@ -56,7 +56,6 @@ class Sign_in_AdminKT :AppCompatActivity() {
            // sign_in.startAnimation(myAnim)
             sign_in_admin_progress_bar.visibility = View.VISIBLE
             admin_wrong_credentials.visibility = View.GONE
-
             myRef.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     var value1: Long = dataSnapshot.value as Long

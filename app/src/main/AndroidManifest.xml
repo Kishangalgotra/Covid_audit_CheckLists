@@ -11,6 +11,7 @@
         android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
         <activity android:name=".Screen_Saver" />
         <activity android:name="KotlinFiles.MainActivityKT" />
+        <activity android:name="KotlinFiles.Sign_in_AdminKT" />
         <activity android:name="Controller_Classes.Admin_Approved_Audits" />
         <activity android:name="Controller_Classes.Activity_List_Of_CheckList" />
         <activity android:name="Controller_Classes.Admin_Rej_Aud_List" />
