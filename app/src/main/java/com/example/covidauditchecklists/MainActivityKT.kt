@@ -26,7 +26,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
 class MainActivityKT : AppCompatActivity() {
-    lateinit var MAUTH : FirebaseAuth
+    var MAUTH : FirebaseAuth  =FirebaseAuth.getInstance()
     lateinit var EMAIL_SIGNING : EditText
     lateinit var PASSWORD_SIGNING : EditText
     lateinit var SIGN_IN :Button
@@ -39,30 +39,30 @@ class MainActivityKT : AppCompatActivity() {
     lateinit var WRONG_CREDENTIALS : TextView
     lateinit var NO_INTERNET :TextView
     var  myRef2 : DatabaseReference = FirebaseDatabase.getInstance().getReference("CheckList")
-    var admin :Int = 0;
+    var admin :Int = 0 
     lateinit var spinner : Spinner
-    var DATABASE :FirebaseDatabase = FirebaseDatabase.getInstance();
+    var DATABASE :FirebaseDatabase = FirebaseDatabase.getInstance() 
     private lateinit var mDatabase : DatabaseReference
     var DATA_FOR_UER_CHECKLIST :Array<String> = emptyArray()
-    var run :Boolean= true;
-    var POOR_NETWORK :Int= 0;
-    var TO_USER_PROFILE :Int = 2;
-    var h :Int = 0;
+    var run :Boolean= true 
+    var POOR_NETWORK :Int= 0 
+    var TO_USER_PROFILE :Int = 2 
+    var h :Int = 0 
     //GLOBAL DECLARATION
-    var myRef_admin_auditor :DatabaseReference= DATABASE.getReference("AUDITOR_FOR_SIGN_IN");
-    var myRef_admin_users :DatabaseReference = DATABASE.getReference("CLIENT_FOR_SIGN_IN");
-    var authorized_in_firebase :Int = 2;
+    var myRef_admin_auditor :DatabaseReference= DATABASE.getReference("AUDITOR_FOR_SIGN_IN") 
+    var myRef_admin_users :DatabaseReference = DATABASE.getReference("CLIENT_FOR_SIGN_IN") 
+    var authorized_in_firebase :Int = 2 
     lateinit var checklistListener : ValueEventListener
-    var  myAnim  = AnimationUtils.loadAnimation(this, R.anim.anim);
+    //var  myAnim  = AnimationUtils.loadAnimation(this, R.anim.anim) 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         if (Build.VERSION.SDK_INT >= 21) {
-            var window :Window= this.getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.setStatusBarColor(this.getResources().getColor(R.color.black));
+            var window :Window= this.getWindow()
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+            window.setStatusBarColor(this.getResources().getColor(R.color.black))
         }
         var actionBar: ActionBar
         actionBar = getSupportActionBar()!!
@@ -71,8 +71,6 @@ class MainActivityKT : AppCompatActivity() {
 
         var intent :Intent= getIntent()
         TO_USER_PROFILE =2
-        MAUTH = FirebaseAuth.getInstance()
-        AUDITOR_PANEL = findViewById(R.id.auditor_Panel);
         SIGN_IN = findViewById(R.id.sign_in_button)
         NO_INTERNET = findViewById(R.id.no_inernet)
         NO_INTERNET.setVisibility(View.INVISIBLE)
@@ -84,6 +82,7 @@ class MainActivityKT : AppCompatActivity() {
         PROGRESSBAR.setVisibility(View.GONE)
         EMAIL_SIGNING =  findViewById(R.id.editTextTextEmailAddress)
         PASSWORD_SIGNING =  findViewById(R.id.editTextTextPassword)
+       // AUDITOR_PANEL = findViewById(R.id.auditor_Panel)
         //temporary dropdown checking
         spinner =  findViewById(R.id.spinner1)
         // Spinner Drop down elements
@@ -99,9 +98,10 @@ class MainActivityKT : AppCompatActivity() {
         spinner.setOnItemSelectedListener( CustomOnItemSelectedListener())
         //temporary dropdown checking
         USER_SEARCH_PAGE = findViewById(R.id.user_search_page)
+        USER_SEARCH_PAGE.visibility = View.GONE
         //used for auditor common password 6789
         if (TO_USER_PROFILE == 5) {
-            var myRef: DatabaseReference = DATABASE.getReference("AuditorPass");
+            var myRef: DatabaseReference = DATABASE.getReference("AuditorPass") 
             var edittext = EditText(getApplicationContext())
             val builder = AlertDialog.Builder(this)
             builder.setView(edittext)
@@ -135,35 +135,35 @@ class MainActivityKT : AppCompatActivity() {
             builder.setCancelable(false).show().setCanceledOnTouchOutside(false)
             //ON USER SEARCH CLICK
             USER_SEARCH_PAGE.setOnClickListener {
-                USER_SEARCH_PAGE.startAnimation(myAnim)
+               // USER_SEARCH_PAGE.startAnimation(myAnim)
                 startActivity(Intent(getApplicationContext(), Admin_user_checklist_details::class.java))
             }
             USER_SEARCH_PAGE.setOnClickListener {
-                USER_SEARCH_PAGE.startAnimation(myAnim)
+              //  USER_SEARCH_PAGE.startAnimation(myAnim)
                 startActivity(Intent(getApplicationContext(), Admin_user_checklist_details::class.java))
-                //finish();
+                //finish() 
             }
             //SIGN IN CLICK
             SIGN_IN.setOnClickListener {
-                SIGN_IN.startAnimation(myAnim)
+               // SIGN_IN.startAnimation(myAnim)
                 if (POOR_NETWORK == 0) {
                     SIGN_IN_FUNCTION()
                 }
             }
             //SIGN UP CLICK
             SIGN_UP.setOnClickListener {
-                SIGN_UP.startAnimation(myAnim)
+              //  SIGN_UP.startAnimation(myAnim)
                 startActivity(Intent(getApplicationContext(), Sign_up::class.java))
-                // finish();
+                // finish() 
             }
             //ADMIN SIGN IN CLICK
             ADMIN_SIGNING.setOnClickListener {
-                ADMIN_SIGNING.startAnimation(myAnim)
+               // ADMIN_SIGNING.startAnimation(myAnim)
                 startActivity(Intent(getApplicationContext(), Sign_in_Admin::class.java))
                 finish()
             }
 
-            USER_SEARCH_PAGE.setVisibility(View.GONE)
+
         }
     }
 
@@ -193,24 +193,24 @@ class MainActivityKT : AppCompatActivity() {
             val password:String = PASSWORD_SIGNING.getText().toString().trim()
             if (email.isEmpty()) {
                 EMAIL_SIGNING.setError("Please Fill Email")
-                EMAIL_SIGNING.requestFocus();
-                return;
+                EMAIL_SIGNING.requestFocus()
+                return 
             }
             COMMON_DATA.sEmail_common = email
             if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                 EMAIL_SIGNING.setError("Please fill Email Correctly")
-                EMAIL_SIGNING.requestFocus();
-                return;
+                EMAIL_SIGNING.requestFocus() 
+                return 
             }
             if (password.isEmpty()) {
                 PASSWORD_SIGNING.setError("Please fill password")
                 PASSWORD_SIGNING.requestFocus()
-                return;
+                return 
             }
             EMAIL_SIGNING.setEnabled(false)
             PASSWORD_SIGNING.setEnabled(false)
             PROGRESSBAR.setVisibility(View.VISIBLE)
-            Toast.makeText(applicationContext, "Starting Authentication.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(applicationContext, "Starting Authentication.", Toast.LENGTH_SHORT).show() 
             //Getting Data For User CheckList
              checklistListener = object: ValueEventListener {
                 @Override
@@ -226,7 +226,7 @@ class MainActivityKT : AppCompatActivity() {
                 override  fun onCancelled(error:DatabaseError) {
                     Log.w("TAG", "Failed to read value.", error.toException())
                 }
-            };
+            } 
             myRef2.addValueEventListener(checklistListener)
 
            //AUTHENTICATING GIVEN CREDENTIALS
@@ -276,7 +276,7 @@ class MainActivityKT : AppCompatActivity() {
                     if(emailss.equals(email)){
                         startActivity(intent)
                         finish()
-                        authorized_in_firebase =2;
+                        authorized_in_firebase =2 
                         break
                     }
                 }
@@ -284,7 +284,7 @@ class MainActivityKT : AppCompatActivity() {
             override fun onCancelled( error:DatabaseError) {
                 Log.w("TAG", "Failed to read value.", error.toException())
             }
-        });
+        }) 
     }
 
     private fun CHECK_IF_CLIENT( emails:String) {
@@ -308,31 +308,31 @@ class MainActivityKT : AppCompatActivity() {
              override  fun onCancelled(error:DatabaseError) {
                 Log.w("TAG", "Failed to read value.", error.toException())
             }
-        });
+        }) 
     }
 
      fun CredCheck(){
-        WRONG_CREDENTIALS.setText("Verifying Credentials");
-        WRONG_CREDENTIALS.setVisibility(View.VISIBLE);
-        var handler = Handler();
+        WRONG_CREDENTIALS.setText("Verifying Credentials") 
+        WRONG_CREDENTIALS.setVisibility(View.VISIBLE) 
+        var handler = Handler() 
         handler.postDelayed({
-        WRONG_CREDENTIALS.setText("Wrong Credentials");
-        WRONG_CREDENTIALS.setVisibility(View.VISIBLE);
+        WRONG_CREDENTIALS.setText("Wrong Credentials") 
+        WRONG_CREDENTIALS.setVisibility(View.VISIBLE) 
         },3000)
 
     }
 
      override fun onDestroy() {
-        super.onDestroy();
+        super.onDestroy() 
         if(myRef2 != null){
-           // myRef2.removeEventListener(checklistListener);
+           // myRef2.removeEventListener(checklistListener) 
         }
     }
 
      override fun onStop() {
-        super.onStop();
+        super.onStop() 
         if(myRef2 != null){
-            //myRef2.removeEventListener(checklistListener);
+            //myRef2.removeEventListener(checklistListener) 
         }
     }
 }
