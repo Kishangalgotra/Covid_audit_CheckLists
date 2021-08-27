@@ -35,7 +35,6 @@ class MainActivityKT : AppCompatActivity() {
     lateinit var ADMIN_SIGNING : TextView
     lateinit var USER_SEARCH_PAGE : TextView
     lateinit var AUDITOR_PANEL : TextView
-
     lateinit var WRONG_CREDENTIALS : TextView
     lateinit var NO_INTERNET :TextView
     var  myRef2 : DatabaseReference = FirebaseDatabase.getInstance().getReference("CheckList")
@@ -53,8 +52,7 @@ class MainActivityKT : AppCompatActivity() {
     var myRef_admin_users :DatabaseReference = DATABASE.getReference("CLIENT_FOR_SIGN_IN") 
     var authorized_in_firebase :Int = 2 
     lateinit var checklistListener : ValueEventListener
-    //var  myAnim  = AnimationUtils.loadAnimation(this, R.anim.anim) 
-
+    //var  myAnim: Animation = AnimationUtils.loadAnimation(applicationContext, R.anim.anim)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -68,7 +66,6 @@ class MainActivityKT : AppCompatActivity() {
         actionBar = getSupportActionBar()!!
         var colorDrawable =  ColorDrawable(Color.parseColor("#102F32"))
         actionBar.setBackgroundDrawable(colorDrawable)
-
         var intent :Intent= getIntent()
         TO_USER_PROFILE =2
         SIGN_IN = findViewById(R.id.sign_in_button)
@@ -100,6 +97,34 @@ class MainActivityKT : AppCompatActivity() {
         USER_SEARCH_PAGE = findViewById(R.id.user_search_page)
         USER_SEARCH_PAGE.visibility = View.GONE
         //used for auditor common password 6789
+        USER_SEARCH_PAGE.setOnClickListener {
+            // USER_SEARCH_PAGE.startAnimation(myAnim)
+            startActivity(Intent(getApplicationContext(), Admin_user_checklist_details::class.java))
+        }
+        USER_SEARCH_PAGE.setOnClickListener {
+            //  USER_SEARCH_PAGE.startAnimation(myAnim)
+            startActivity(Intent(getApplicationContext(), Admin_user_checklist_details::class.java))
+            //finish()
+        }
+        //SIGN IN CLICK
+        SIGN_IN.setOnClickListener {
+            //  SIGN_IN.startAnimation(myAnim)
+            if (POOR_NETWORK == 0) {
+                SIGN_IN_FUNCTION()
+            }
+        }
+        //SIGN UP CLICK
+        SIGN_UP.setOnClickListener {
+            // SIGN_UP.startAnimation(myAnim)
+            startActivity(Intent(getApplicationContext(), Sign_up::class.java))
+            // finish()
+        }
+        //ADMIN SIGN IN CLICK
+        ADMIN_SIGNING.setOnClickListener {
+            // ADMIN_SIGNING.startAnimation(myAnim)
+            startActivity(Intent(getApplicationContext(), Sign_in_Admin::class.java))
+            finish()
+        }
         if (TO_USER_PROFILE == 5) {
             var myRef: DatabaseReference = DATABASE.getReference("AuditorPass") 
             var edittext = EditText(getApplicationContext())
@@ -134,39 +159,8 @@ class MainActivityKT : AppCompatActivity() {
             }
             builder.setCancelable(false).show().setCanceledOnTouchOutside(false)
             //ON USER SEARCH CLICK
-            USER_SEARCH_PAGE.setOnClickListener {
-               // USER_SEARCH_PAGE.startAnimation(myAnim)
-                startActivity(Intent(getApplicationContext(), Admin_user_checklist_details::class.java))
-            }
-            USER_SEARCH_PAGE.setOnClickListener {
-              //  USER_SEARCH_PAGE.startAnimation(myAnim)
-                startActivity(Intent(getApplicationContext(), Admin_user_checklist_details::class.java))
-                //finish() 
-            }
-            //SIGN IN CLICK
-            SIGN_IN.setOnClickListener {
-               // SIGN_IN.startAnimation(myAnim)
-                if (POOR_NETWORK == 0) {
-                    SIGN_IN_FUNCTION()
-                }
-            }
-            //SIGN UP CLICK
-            SIGN_UP.setOnClickListener {
-              //  SIGN_UP.startAnimation(myAnim)
-                startActivity(Intent(getApplicationContext(), Sign_up::class.java))
-                // finish() 
-            }
-            //ADMIN SIGN IN CLICK
-            ADMIN_SIGNING.setOnClickListener {
-               // ADMIN_SIGNING.startAnimation(myAnim)
-                startActivity(Intent(getApplicationContext(), Sign_in_Admin::class.java))
-                finish()
-            }
-
-
         }
     }
-
 
     //SIGN IN FUNCTION WITH CHECKS
     public fun SIGN_IN_FUNCTION()  {
@@ -174,17 +168,11 @@ class MainActivityKT : AppCompatActivity() {
         if(entity.equals("Client")) {
             TO_USER_PROFILE =1
         }
-
         //CHECK IF DEVICE HAVE A STABLE CONNECTION
         var connected :Boolean
         val connectivityManager :ConnectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val activenetwork :NetworkInfo? = connectivityManager.activeNetworkInfo
         connected = activenetwork?.isConnectedOrConnecting  == true
-        /*if (connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE)?.getState() ?:  == NetworkInfo.State.CONNECTED ||
-                connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
-            connected = true  //we are connected to a network
-        } else
-            connected = false*/
         //SIGN IN ACTIVITY STARTS HERE
         if (connected) {
             NO_INTERNET.setVisibility(View.INVISIBLE)
@@ -228,7 +216,6 @@ class MainActivityKT : AppCompatActivity() {
                 }
             } 
             myRef2.addValueEventListener(checklistListener)
-
            //AUTHENTICATING GIVEN CREDENTIALS
             MAUTH.signInWithEmailAndPassword(email, password).addOnCompleteListener{task ->
                 if (task.isSuccessful()) {
@@ -287,7 +274,7 @@ class MainActivityKT : AppCompatActivity() {
         }) 
     }
 
-    private fun CHECK_IF_CLIENT( emails:String) {
+    private fun CHECK_IF_CLIENT(emails: String) {
         var intent1 =  Intent(applicationContext, Searched_user_Data::class.java)
         intent1.putExtra("searched_user_condition", 1)
         CredCheck()
@@ -319,7 +306,6 @@ class MainActivityKT : AppCompatActivity() {
         WRONG_CREDENTIALS.setText("Wrong Credentials") 
         WRONG_CREDENTIALS.setVisibility(View.VISIBLE) 
         },3000)
-
     }
 
      override fun onDestroy() {
@@ -327,7 +313,7 @@ class MainActivityKT : AppCompatActivity() {
         if(myRef2 != null){
            // myRef2.removeEventListener(checklistListener) 
         }
-    }
+     }
 
      override fun onStop() {
         super.onStop() 

@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.covidauditchecklists">
-
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -45,14 +43,11 @@
             android:launchMode="singleTop"
             android:singleUser="true"
             android:windowSoftInputMode="adjustNothing|stateVisible" />
-
-
         <activity android:name=".ScreenSaverKT">
             <intent-filter>
                 <action
                     android:name="android.intent.action.MAIN"
                     android:launchMode="singleTop" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
